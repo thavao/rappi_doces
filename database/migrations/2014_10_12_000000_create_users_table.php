@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('cpf', 11)->unique();
+            $table->string('cpf', 14)->unique();
             $table->string('telefone',11);
             $table->string('endereco', 320);
+            $table->integer('nivel')->unsigned()->default(99);
             $table->timestamps();
             $table->softDeletes();
         });

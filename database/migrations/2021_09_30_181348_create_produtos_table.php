@@ -15,12 +15,12 @@ class CreateProdutosTable extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->float('preco', 8, 2);
+            $table->float('preco', 8, 2)->unsigned();
             $table->text('descricao');
-            $table->float('qtdestoque', 10, 0);
+            $table->integer('qtdestoque')->unsigned();
             $table->string('NomeProduto', 128);
             $table->foreignId('Fornecedor_id')->constrained();
-            $table->float('Estoquemin', 10, 0);
+            $table->integer('Estoquemin')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

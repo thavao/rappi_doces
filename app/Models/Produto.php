@@ -9,6 +9,19 @@ class Produto extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'preco',
+        'descricao',
+        'qtdestoque',
+        'NomeProduto',
+        
+    ];
+
     //define um relacionamento entre produto e fornecedor
     public function fornecedor(){
         return $this->belongsTo(Fornecedor::class, 'fornecedor_id'); 

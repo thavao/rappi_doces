@@ -18,8 +18,8 @@ class CreatePedidosTable extends Migration
             $table->foreignId('User_id')->constrained();
             $table->foreignId('produto_id')->constrained();
             $table->date('datapedido');
-            $table->float('valorunitariop', 10, 2);
-            $table->float('quantidade', 999, 0);
+            $table->float('valorunitariop', 10, 2)->unsigned();
+            $table->integer('quantidade')->unsigned();
             $table->string('observação',640);
             $table->softDeletes();
             $table->timestamps();
