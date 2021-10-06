@@ -30,7 +30,12 @@ class User extends Authenticatable
         'endereco',
         'telefone',
         'cpf',
+        'nivel',
     ];
+
+    public function pedidos(){
+        return $this->hasMany(User::class, 'pedido_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,8 +46,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'two_factor_recovery_codes',
-        'two_factor_secret',
-        'nivel',
+        'two_factor_secret', 
     ];
 
     /**

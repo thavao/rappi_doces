@@ -15,7 +15,8 @@ class CreateFotopsTable extends Migration
     {
         Schema::create('fotops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fotop_id')->constrained();
+            $table->foreignId('produto_id')->constrained();
+            $table->string('caminho');
             $table->timestamps();
             $table->softDeletes();
         });

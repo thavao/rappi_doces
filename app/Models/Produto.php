@@ -26,10 +26,12 @@ class Produto extends Model
     public function fornecedor(){
         return $this->belongsTo(Fornecedor::class, 'fornecedor_id'); 
     }
+    //define um relacionamento entre produto e pedido
     public function pedido(){
-        return $this->hasMany(Pedido::class, 'pedido_id'); 
+        return $this->hasMany(Produto::class, 'pedido_id'); 
     }
+    //define um relacionamento entre produto e foto
     public function fotop(){
-        return $this->hasMany(Fotop::class, 'fotop_id'); 
+        return $this->hasMany(Produto::class, 'fotop_id'); 
     }
 }
