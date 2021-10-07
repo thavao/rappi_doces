@@ -16,7 +16,7 @@ class CreateFornecedorsTable extends Migration
         Schema::create('fornecedors', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('cnpj', 14);
+            $table->string('cnpj', 18);
             $table->timestamps();
             $table->softDeletes();
         });
