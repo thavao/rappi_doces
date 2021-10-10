@@ -16,6 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                @if (Auth::user()->nivel < 10)
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('cadastrar.produtos') }}" :active="request()->routeIs('cadastrar.produtos')">
+                        {{ __('Cadastrar produto') }}
+                    </x-jet-nav-link>
+                </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
