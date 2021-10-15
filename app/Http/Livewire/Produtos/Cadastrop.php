@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\produtosp;
 
 use Livewire\Component;
-use App\Models\{produto, fornecedor, imagemp};
+use App\Models\{produto, fornecedor, fotop, imagemp};
 use DB;
 use Str;
 
@@ -69,16 +69,16 @@ class Lista extends Component
     }
 
     public function remover($id){
-        $this->usuarioFake = produto::findOrFail(decrypt($id));
+        $this->produtoFake = produto::findOrFail(decrypt($id));
         $this->modalDelete = true;
     }
 
     public function delete($id){
         try {
-            $usuario = produto::findOrFail(decrypt($id));
+            $produtos = produto::findOrFail(decrypt($id));
             // $usuario->team->delete();
-            $usuario->delete();
-            session()->flash('success', "Usuário bloqueado com sucesso!");
+            $produtos->delete();
+            session()->flash('success', "Produto removido com sucesso!");
         } catch (\Exception $ex) {
             session()->flash('error', $ex->getMessage());
         }
@@ -86,15 +86,15 @@ class Lista extends Component
     }
 
     public function restaurar($id){
-        $this->usuarioFake = produto::withTrashed()->findOrFail(decrypt($id));
+        $this->produtoFake = produto::withTrashed()->findOrFail(decrypt($id));
         $this->modalRestore = true;
     }
 
     public function restore($id){
         try {
-            $usuario = produto::withTrashed()->findOrFail(decrypt($id));
-            $usuario->restore();
-            session()->flash('success', "Usuário restaurado com sucesso!");
+            $produtos = produto::withTrashed()->findOrFail(decrypt($id));
+            $produtos->restore();
+            session()->flash('success', "Produto recolocado com sucesso!");
         } catch (\Exception $ex) {
             session()->flash('error', $ex->getMessage());
         }
@@ -106,19 +106,21 @@ class Lista extends Component
         DB::beginTransaction();
         try {
             $produtos = produto::create([
-                'name' => $this->name,
-                'email' => $this->email,
-                'password' => Str::random(40)
+                'NomeProduto' => $this->nomeproduto,
+                'preco' => $this->preco,
+                'descricao' => $this->descricao,
+                'qtdestoque' => $this->qtdestoque,
+                'Fornecedor_id' => $this->fornecedor_id,
+                'estoquemin' => $this->estoquemin,
             ]);
-            $time = Team::create([
-                'name' => "Time " . $usuario->name,
-                'personal_team' => '1',
-                'user_id' => $usuario->id
-            ]);
-            $usuario->current_team_id = $time->id;
-            $usuario->save();
+            //$fotops = fotop::create([
+            //  'name' => "Time " . $usuario->name,
+            //   'user_id' => $usuario->id
+            //]);
+            $produtos->current_produto_id = $produtos->id;
+            $produtos->save();
             DB::commit();
-            session()->flash('success', "Usuário cadastrado com sucesso!");
+            session()->flash('success', "Produto cadastrado com sucesso!");
         } catch (\Exception $ex) {
             DB::rollBack();
             session()->flash('error', $ex->getMessage());
@@ -128,24 +130,28 @@ class Lista extends Component
     }
 
     public function alterar($id){
-        $this->usuarioFake = User::withTrashed()->findOrFail(decrypt($id));
-        $this->idUsuario = $this->usuarioFake->id;
-        $this->name = $this->usuarioFake->name;
-        $this->email = $this->usuarioFake->email;
+        $this->produtoFake = produto::withTrashed()->findOrFail(decrypt($id));
+        $this->idproduto = $this->produtoFake->id;
+        $this->NomeProduto = $this->produtoFake->nomeproduto;
+        $this->preco = $this->produtoFake->preco;
+        $this->descricao = $this->produtoFake->descricao;
+        $this->qtdestoque = $this->produtoFake->qtdestoque;
+        $this->Fornecedor_id = $this->produtoFake->Fornecedor_id;
+        $this->Estoquemin = $this->produtoFake->Estoquemin;
         $this->modalAltera = true;
     }
 
     public function update(){
         DB::beginTransaction();
         try {
-            $usuario = User::findOrFail($this->idUsuario);
+            $produtos = produto::findOrFail($this->idUsuario);
 
             $validatedData = $this->validate();
 
-            $usuario->update($validatedData);
+            $produtos->update($validatedData);
 
             DB::commit();
-            session()->flash('success', "Usuário alterado com sucesso!");
+            session()->flash('success', "Produto alterado com sucesso!");
         } catch (\Exception $ex) {
             DB::rollBack();
             session()->flash('error', $ex->getMessage());
