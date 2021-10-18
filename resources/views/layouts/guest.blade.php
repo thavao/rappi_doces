@@ -15,6 +15,10 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <script src="{{ asset('js/jquery-3.6.0.min.js') }}" ></script>
+
+        <script src="{{ asset('js/jquery.mask.js') }}" ></script>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

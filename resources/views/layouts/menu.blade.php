@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}" ></script>
+
+    <script src="{{ asset('js/jquery.mask.js') }}" ></script>
 
     <title>@yield('title')</title>
 </head>
@@ -25,12 +28,12 @@
                             <img class="h-16 w-40" src="\images\rappilogo.png" alt="logo"></a>
                         <!-- Nav Links -->
                         <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-                            <li><a class="hover:text-gray-200" href="#">Home</a></li>
+                            <li><a class="hover:text-gray-200" href="/">Home</a></li>
                             <li><a class="hover:text-gray-200" href="#">Catagory</a></li>
                             @if (Route::has('login'))
                                 @auth
 
-
+                                    <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/produtos') }}">Cadastrar Produto</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ url('/dashboard') }}">Dashboard</a></li>
                                 @else
                                     <li><a class="hover:text-gray-200" href="{{ route('login') }}">Log in</a></li>

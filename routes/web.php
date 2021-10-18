@@ -2,6 +2,8 @@
 
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdutoController;
+use App\Models\Produto;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
-
+}); */
+ Route::get('/', [ProdutoController::class, 'mostrar_produtos'])->name('mostrar.produto');
 
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/cadastrarprodutos', \App\Http\Livewire\Produtos\Cadastrop::class) ->name('cadastrar.produtos');
-    
+   Route::get('/cadastrar/produtos', [ProdutoController::class, 'cadastrar_produto'])->name('cadastrar.produto');
+   Route::post('/cadastrar', [ProdutoController::class, 'store']);
+
+
 });
