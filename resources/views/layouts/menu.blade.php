@@ -33,8 +33,11 @@
                             @if (Route::has('login'))
                                 @auth
 
+
+                                @if (Auth::user()->nivel < 10)
                                     <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/produtos') }}">Cadastrar Produto</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                    @endif
                                 @else
                                     <li><a class="hover:text-gray-200" href="{{ route('login') }}">Log in</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ route('register') }}">Registrar</a></li>

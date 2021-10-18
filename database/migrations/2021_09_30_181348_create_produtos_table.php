@@ -21,6 +21,7 @@ class CreateProdutosTable extends Migration
             $table->string('NomeProduto', 128);
             $table->foreignId('Fornecedor_id')->constrained();
             $table->integer('Estoquemin')->unsigned();
+            $table->string('imagem');
             $table->timestamps();
             $table->softDeletes();
         });

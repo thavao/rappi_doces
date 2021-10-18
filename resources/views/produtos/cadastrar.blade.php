@@ -1,12 +1,22 @@
 
+@if (Auth::user()->nivel > 10)
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+<h1>Falha ao carregar a pagina</h1>
+@endif
 @extends('layouts.menu')
 @section('title', 'Rappi Doces')
 @section('content')
 
 
-<div id="produtos-cadastrar-container" class="col-md-6 offset-md-3">
+@if (Auth::user()->nivel < 10)
+<div>
   <h1>Cadastre um produto</h1>
-  <form action="/cadastrar" method="POST">
+  <form action="/cadastrar" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="title">Nome do Produto</label>
@@ -33,6 +43,10 @@
         <label for="title">ID do Fornecedor:</label>
         <input type="int"  id="Fornecedor_id" name="Fornecedor_id" placeholder="00000">
       </div>
+      <div class="form-group">
+        <label for="image">Imagem do produto:</label>
+        <input type="file" id="imagem" name="imagem">
+      </div>
     <input type="submit"  value="Finalizar Cadastro">
   </form>
 </div>
@@ -44,4 +58,4 @@
       });
       </script>
 @endsection
-
+@endif
