@@ -28,7 +28,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
         return view('dashboard');
     })->name('dashboard');
    Route::get('/cadastrar/produtos', [ProdutoController::class, 'cadastrar_produto'])->name('cadastrar.produto');
+
    Route::post('/cadastrar', [ProdutoController::class, 'store']);
+
+   Route::get('/produtos/painel', [ProdutoController::class, 'painel']);
 
 
 });

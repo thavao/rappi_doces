@@ -16,20 +16,24 @@
 <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
     <div
         {{-- parte que fica os produtos --}}
-        class="relative flex items-top justify-center min-h-screen bg-grey-300 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        class="relative flex items-top justify-center min-h-screen bg-grey-300 dark:bg-gray-900 sm:items-center py-4 sm:pt-0 overflow-y-auto	overflow-y: auto;">
         {{-- fim da parte q fica os produtos --}}
         <div class="flex flex-wrap place-items-top h-screen">
             <section class="relative mx-auto">
                 <!-- navbar -->
                 <nav class="flex justify-between bg-green-500	--tw-bg-opacity: 1;
                 background-color: rgba(16, 185, 129, var(--tw-bg-opacity)); text-white w-screen">
+
                     <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-                        <a class="text-3xl font-bold font-heading" href="#">
+
+                        <a class="text-3xl font-bold font-heading" href="/">
                             <img class="h-16 w-40" src="\images\rappilogo.png" alt="logo"></a>
                         <!-- Nav Links -->
                         <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
                             <li><a class="hover:text-gray-200" href="/">Home</a></li>
-                            <li><a class="hover:text-gray-200" href="#">Catagory</a></li>
+                            <li><a class="hover:text-gray-200" href="#">Categorias</a></li>
+
+
                             @if (Route::has('login'))
                                 @auth
 
@@ -43,6 +47,8 @@
                                     <li><a class="hover:text-gray-200" href="{{ route('register') }}">Registrar</a></li>
                                 @endif
                             @endauth
+                            <li><form action="/" method="get">
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"type="search" name="search" id="search" placeholder="Pesquisar" > </form></li>
 
 
 
@@ -60,13 +66,7 @@
 
                             </a>
                             <!-- Sign In / Register      -->
-                            <a class="flex items-center hover:text-gray-200" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                                </svg>
-                            </a>
+
 
 
                         </div>
@@ -85,13 +85,8 @@
                             </span>
                         </span>
                     </a>
-                    <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </a>
+
+
 
                 </nav>
                 @yield('content')

@@ -9,9 +9,19 @@ class ProdutoController extends Controller
 {
     public function mostrar_produtos(){
 
-        $produtos = Produto::all();
+        $search = request('search');
+        if($search){
+            $produtos = Produto::where([
+                ['NomeProduto', 'like', '%'.$search.'%']
+            ])->get();
 
-        return view('welcome', ['produtos' => $produtos]);
+        }
+        else{
+                $produtos = Produto::all();
+            }
+
+
+        return view('welcome', ['produtos' => $produtos, 'search' => $search]);
 
     }
     public function cadastrar_produto (){
@@ -45,8 +55,12 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return view('produtos.cadastrar')->with('msg', 'Produto cadastrado com SUCESSO') ;
-    }
+        return redirect('cadastrar\produtos')->with('msg', 'Produto cadastrado com SUCESSO');
+
+
+ }
+
+
 
     public function show($id){
 
@@ -54,4 +68,11 @@ class ProdutoController extends Controller
 
         return view('produtos.show', ['produto' => $produto]);
     }
+
+    public function painel(){
+        $produto = Produto::all();
+
+        return view('produtos.painel', ['produto' => $produto]);
+    }
 }
+

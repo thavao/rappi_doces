@@ -4,10 +4,15 @@
     <div class="relative m-3 flex flex-wrap mx-auto justify-center">
 
 
+        @if ($search)
+        <h1 class="mr-4 w-full text-center" >buscando por: {{ $search}}</h1>
+
+
+        @endif
 
         @forelse($produtos as $produto)
         <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer" >
-            
+
             <div class="overflow-x-hidden rounded-2xl relative" >
 
                 <a href="/produtos/{{$produto->id}}"><img class="h-40 rounded-2xl w-full object-cover image-fluid"  src="\produtos\{{$produto->imagem}}"></a>
@@ -35,9 +40,15 @@
             </div>
         </div>
 
-        @empty
-        <p>Nenhum produto Cadastrado</p>
+
+
+            @empty
+            <p>Nenhum produto encontrado</p>
+
+
         @endforelse
+
+
 
     </div>
 
