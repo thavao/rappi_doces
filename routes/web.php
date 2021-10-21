@@ -27,11 +27,21 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
    Route::get('/cadastrar/produtos', [ProdutoController::class, 'cadastrar_produto'])->name('cadastrar.produto');
 
    Route::post('/cadastrar', [ProdutoController::class, 'store']);
 
-   Route::get('/produtos/painel', [ProdutoController::class, 'painel']);
+   Route::get('/p/painel', [ProdutoController::class, 'painel']);
 
+   Route::delete('produtos/destroy/{id}',[ProdutoController::class, 'destroy']);
+
+   Route::post('/produtos/restore/{id}', [ProdutoController::class, 'restore']);
+
+   Route::get('/p/painel_deletados', [ProdutoController::class, 'deletados']);
+
+   Route::get('/produtos/editar/{id}', [ProdutoController::class, 'editar']);
+
+   Route::put('/produtos/update/{id}', [ProdutoController::class, 'update']);
 
 });

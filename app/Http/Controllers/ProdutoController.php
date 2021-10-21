@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Redirect;
 
 class ProdutoController extends Controller
 {
@@ -73,6 +74,46 @@ class ProdutoController extends Controller
         $produto = Produto::all();
 
         return view('produtos.painel', ['produto' => $produto]);
+    }
+        //deletar
+    public function destroy($id){
+        Produto::findOrFail($id)->delete();
+
+
+        return redirect('/p/painel')->with('msg', 'PRODUTO DELETADO COM SUCESSO!');
+
+    }
+
+    //mostrar os deletados
+    public function deletados(){
+
+        $produtos = Produto::withTrashed()->get();
+
+
+       return view('produtos.deletados', ['produto'=>$produtos]);
+
+    }
+        //restaurar
+    public function restore($deleted_at){
+       $p = Produto::withTrashed()->findOrFail($deleted_at);
+        $p->restore();
+
+        return redirect('/p/painel_deletados')->with('msg', 'Produto restaurado com sucesso!');
+    }
+        //mostrar tela de editar
+    public function editar($id){
+        $produto = Produto::findOrFail($id);
+
+        return view('produtos.editar', ['produto' => $produto]);
+    }
+        //editar
+    public function update(Request $request){
+
+
+        Produto::findOrFail($request->id)->update($request->all());
+
+        return redirect('/p/painel')->with('msg', 'PRODUTO DELETADO COM SUCESSO!');
+
     }
 }
 
