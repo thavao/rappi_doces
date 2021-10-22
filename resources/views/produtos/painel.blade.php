@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="mt-2">
-    <div><h1 style="text-align: center"> <a href="/p/painel_deletados">Ver produtos deletados</a></h1></div>
-    <table class="max-w-5xl mx-auto table-auto">
+    <div><h1 class=" "style="text-align: center"> <a href="/p/painel_deletados">Ver produtos deletados</a></h1></div>
+    <table class="max-w-2xl mx-auto table-auto">
       <thead class="justify-between">
         <tr class="bg-green-600">
           <th class="px-16 py-2">
@@ -36,7 +36,7 @@
 
       <a href="/produtos/{{$produto->id}}">
       <tbody class="bg-gray-200">
-        <tr class="bg-white border-b-2 border-gray-200">
+        <tr class="bg-white border-b-2 border-gray-900">
           <td class="px-16 py-2 flex flex-row items-center">
             <a href="/produtos/{{$produto->id}}"><img
               class="h-8 w-8 rounded-full object-cover "
