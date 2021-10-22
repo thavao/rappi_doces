@@ -11,11 +11,11 @@
         @endif
 
         @forelse($produtos as $produto)
-        <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer" >
+        <div class= "h-40 w-40 bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer" >
 
             <div class="overflow-x-hidden rounded-2xl relative" >
 
-                <a href="/produtos/{{$produto->id}}"><img class="h-40 rounded-2xl w-full object-cover image-fluid"  src="\produtos\{{$produto->imagem}}"></a>
+                <a href="/produtos/{{$produto->id}}"><img class="h-40 rounded-2xl w-40 object-cover image-fluid"  src="\produtos\{{$produto->imagem}}"></a>
                 <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70" fill="none"
                         viewBox="0 0 24 24" stroke="black">
@@ -24,7 +24,7 @@
                     </svg>
                 </p>
             </div>
-            <div class="mt-4 pl-2 mb-2 flex justify-between ">
+            <div class="mt-4 pl-2 mb-2 flex justify-between truncate ... ">
                 <div>
                     <p class="text-lg font-semibold text-gray-900 mb-0"><a href="/produtos/{{$produto->id}}">{{$produto->NomeProduto}} </a></p>
                     <p class="text-md text-gray-800 mt-0"><a href="/produtos/{{$produto->id}}">R$ {{number_format($produto->preco, 2,",",".") }}</a></p>
