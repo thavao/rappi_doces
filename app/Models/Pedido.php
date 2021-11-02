@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Facades\DB;
+use App\Models\Carrinho;
 class Pedido extends Model
 {
     use HasFactory;
@@ -25,5 +26,9 @@ class Pedido extends Model
     }
     public function cliente(){
         return $this->belongsTo(User::class, 'User_id');
+    }
+
+    public function carrinho(){
+        return $this->hasMany(Carrinho::class, 'carrinho_id')->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'));
     }
 }

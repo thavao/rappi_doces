@@ -22,12 +22,12 @@
 </div>
     <div class="flex flex-col mb-4">
         <label class="mb-2 font-bold text-lg text-white font-light" for="preco">Valor do Produto:</label>
-        <input class="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" type="float"  id="preco" name="preco" placeholder="R$ 00.0" value="{{$produto->preco}}" >
+        <input class="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" type="decimal"  id="preco" name="preco" placeholder="R$ 00.0" value="{{$produto->preco}}" >
 </div>
 
     <div class="flex flex-col mb-4">
         <label class="mb-2 font-bold text-lg text-white font-light" for="descricao">Descrição:</label>
-      <input autocapitalize="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" name="descricao" id="descricao"  placeholder="Descrição" value="{{$produto->descricao}}"></input>
+      <input autocapitalize="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" name="descricao" id="descricao"  placeholder="Descrição" value="{{$produto->descricao}}">
     </div>
     <div class="flex flex-col mb-4">
         <label class="mb-2 font-bold text-lg text-white font-light" for="qtdestoque">Quantidade de Estoque:</label>
@@ -45,9 +45,11 @@
       <div class="flex flex-col mb-4">
         <img class="object-scale-down h-48 w-full" src=" /produtos/{{$produto->imagem}}" alt="imagem de {{$produto->NomeProduto}}">
         <label class="mb-2 font-bold text-lg text-white font-light  " for="image">Imagem do Produto</label>
-        <input class="text-grey-800" type="file" id="imagem" name="imagem" >
+
       </div>
-      
+
+      <input class="block border-2 border-black bg-green-600 hover:bg-green-700 text-white font-bold uppercase text-lg mx-auto p-4 rounded" type="submit"  value="Finalizar Edição">
+
   </form>
 </div>
 <script>

@@ -87,7 +87,7 @@ class ProdutoController extends Controller
     //mostrar os deletados
     public function deletados(){
 
-        $produtos = Produto::withTrashed()->get();
+        $produtos = Produto::onlyTrashed()->get();
 
 
        return view('produtos.deletados', ['produto'=>$produtos]);

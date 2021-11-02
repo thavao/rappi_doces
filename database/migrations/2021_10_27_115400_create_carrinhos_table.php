@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidosTable extends Migration
+class CreateCarrinhosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('carrinhos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('User_id')->constrained();
             $table->foreignId('produto_id')->constrained();
-            $table->date('datapedido');
-            $table->decimal('valorunitariop', 10, 2)->unsigned();
-            $table->integer('quantidade')->unsigned();
-            $table->string('observacao',640);
+            $table->foreignId('pedidos_id')->constrained();
             $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO
-            $table->softDeletes();
+            $table->decimal('valor', 8, 2)->default(0);
+            $table->decimal('desconto', 8, 2)->default(0);
+            $table->foreignId('cupom_desconto_id')->nullable()->constrained();
+
+
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('carrinhos');
     }
 }

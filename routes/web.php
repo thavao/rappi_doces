@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarrinhoController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
@@ -79,5 +80,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 
     Route::post('/fornecedores/restore/{id}', [FornecedorController::class, 'restoref']);
 
+////////////////////////////////////////CARRINHO/////////////////////////////////////////
 
+    Route::get('/user/carrinho/{id}', [CarrinhoController::class, 'ver']);
 });

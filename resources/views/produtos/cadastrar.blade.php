@@ -1,8 +1,12 @@
+@php
+if (Auth::user()->nivel > 10){
 
-@if (Auth::user()->nivel > 10)
-<h1 style="text-align: center">Falha ao carregar a pagina</h1>
+    return redirect('/ttttt');
+    }
+@endphp
 
-@endif
+
+
 @extends('layouts.menu')
 @section('title', 'Rappi Doces')
 @section('content')
@@ -21,7 +25,7 @@
     </div>
     <div class="flex flex-col mb-4">
                 <label class="mb-2 font-bold text-lg text-white font-light" for="title">Valor do Produto</label>
-                <input class="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" type="float"  id="preco" name="preco" placeholder="R$ 00.00">
+                <input class="border py-1 px-2 border-red-500 rounded py-1 px-3 text-grey-800" type="decimal"  id="preco" name="preco" placeholder="R$ 00.00">
     </div>
 
     <div class="flex flex-col mb-4">
