@@ -15,6 +15,7 @@ class Pedido extends Model
         'id',
         'User_id',
         'produto_id',
+        'carrinho_id',
         'datapedido',
         'valorunitariop',
         'quantidade',
@@ -29,6 +30,6 @@ class Pedido extends Model
     }
 
     public function carrinho(){
-        return $this->hasMany(Carrinho::class, 'carrinho_id')->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'));
+        return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
     }
 }

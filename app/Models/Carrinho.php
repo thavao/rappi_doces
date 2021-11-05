@@ -15,7 +15,7 @@ class Carrinho extends Model
 
         'id',
         'Produto_id',
-        'Pedidos_id',
+        'Pedido_id',
         'status',
         'valor',
         'cupom_desconto_id',

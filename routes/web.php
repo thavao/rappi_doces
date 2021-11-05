@@ -82,5 +82,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 
 ////////////////////////////////////////CARRINHO/////////////////////////////////////////
 
-    Route::get('/user/carrinho/{id}', [CarrinhoController::class, 'ver']);
+    Route::get('/carrinho', [CarrinhoController::class, 'ver']);
 });

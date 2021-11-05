@@ -16,14 +16,8 @@ class CarrinhoController extends Controller
 
         $pedidos = Pedido::where(['status' => 'RE', 'User_id' => Auth::id()])->get();
 
-        dd([
-            $pedidos,
-            $pedidos[0]->Carrinho,
-            $pedidos[0]->Carrinho[0]->produto
 
-        ]);
-
-        return view('carrinho.produtosRE', ['pedidos' => $pedidos]);
+        return view('carrinho.verCarrinho', ['pedidos' => $pedidos]);
     }
 
 }

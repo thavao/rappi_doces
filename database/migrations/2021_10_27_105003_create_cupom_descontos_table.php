@@ -16,6 +16,7 @@ class CreateCupomDescontosTable extends Migration
         Schema::create('cupom_descontos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
