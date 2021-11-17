@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('cpf', 14)->unique();
-            $table->string('telefone',11);
+            $table->string('telefone',15);
             $table->string('endereco', 320);
             $table->integer('nivel')->unsigned()->default(99);
             $table->timestamps();

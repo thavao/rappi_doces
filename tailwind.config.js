@@ -16,6 +16,17 @@ module.exports = {
             },
         },
     },
+     
+        theme: {
+          container: {
+            center: true,
+            padding: '2rem',
+            sm: '300px',
+
+          },
+        },
+      
+      
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
