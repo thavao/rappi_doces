@@ -20,16 +20,16 @@ class CarrinhoController extends Controller
         return view('carrinho.verCarrinho', ['pedidos' => $pedidos]);
     }
 
-    public function adicionar(Request $req){
+    public function adicionar(){
         $this->middleware('VerifyCsrfToken');
 
-
+        $req = Request();
 
         $idproduto = $req->input('id');
 
         $produto = Produto::find('$idproduto');
         if( empty($produto->id) ){
-            $req->session()->flash('mensagem-falhas', 'Produto não encontrado em nossa loja!');
+            $req->session()->flash('mensagem-falha', 'Produto não encontrado em nossa loja!');
             return redirect('carrinho');
 
         }
