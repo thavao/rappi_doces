@@ -14,11 +14,12 @@ class Carrinho extends Model
     protected $fillable = [
 
         'id',
-        'Produto_id',
-        'Pedido_id',
+        'produto_id',
+        'pedido_id',
         'status',
         'valor',
         'cupom_desconto_id',
+        
 
     ];
 

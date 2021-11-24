@@ -22,6 +22,17 @@ class Pedido extends Model
         'observacao',
 
     ];
+    protected $appends =[
+        'total',
+    ];
+    public function getTotalAttribute(){
+        $carrinhos = $this->carrinho;
+        $total = 0;
+        foreach($carrinhos as $car){
+            $total = $total + ($car->produto->preco * $this->quantidade);
+        }
+        return $total;
+    }
     public function produto(){
         return $this->belongsTo(Produto::class, 'produto_id');
     }
@@ -30,10 +41,11 @@ class Pedido extends Model
     }
 
     public function carrinho(){
-        return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
+        return $this->hasMany(Carrinho::class);
+        // return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
     }
 
-    public function consultaId($where){
+    public static function consultaId($where){
         $pedido = self::where($where)->first(['id']);
         return !empty($pedido->id) ? $pedido->id : null;
     }

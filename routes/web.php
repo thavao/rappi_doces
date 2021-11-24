@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 
 ////////////////////////////////////////CARRINHO/////////////////////////////////////////
 
-    Route::get('/carrinho', [CarrinhoController::class, 'ver']);
+    Route::get('/carrinho', [CarrinhoController::class, 'ver'])->name('carrinho.ver');
 
     //adicionar produto ao carrinho
     Route::get('carrinho/adicionar', function() {

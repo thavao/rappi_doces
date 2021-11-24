@@ -50,7 +50,7 @@
                         <td class="center-align">
                             <div class="col l4 m4 s4">
                                 <a class="col l4 m4 s4" href="#">
-                                    <i class="material-icons samll">remove_circle_outline</i>
+                                    <i class="material-icons samll remove_circle_outline"></i>
                                 </a>
                                 <span class="col l4 m4 s4">{{$pedido_produto->quantidade}}</span>
                                 <a class="col l4 m4 s4" href="#">
@@ -73,7 +73,7 @@
             </table>
 	    <div class="row">
 		<strong class="col offset-16 offset-m6 offset-s6 l4 m4 s4 right-align">Total do produto: </strong>
-		<span class="col 12 m2 s2">R$ {{number_format($total_pedido, 2, ', ', '.')}} </span>
+		<span class="col 12 m2 s2">R$ {{number_format($pedido->total, 2, ', ', '.')}} </span>
 	    </div>
             <div class="row">
 		<a class="btn-large tooltiped col l4 s4 m4 offset-18 offset-m8 offset-s8"

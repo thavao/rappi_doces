@@ -9,6 +9,7 @@ use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\User;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use DB;
 
 class CarrinhoController extends Controller
 {
@@ -27,42 +28,60 @@ class CarrinhoController extends Controller
 
         $idproduto = $req->input('id');
 
-        $produto = Produto::find('$idproduto');
+        $produto = Produto::find($idproduto);
         if( empty($produto->id) ){
             $req->session()->flash('mensagem-falha', 'Produto não encontrado em nossa loja!');
             return redirect('carrinho');
 
         }
 
-        $idusuario = Auth::id();
-
+        $idusuario = Auth::User()->id;
+        
         $idpedido = Pedido::consultaId([
-            'user_id' => $idusuario,
+            'User_id' => $idusuario,
             'status' => 'RE' //reservado
         ]);
+        //dd($produto->id);
+        
 
         if(empty($idpedido)){
-            $pedido_novo = Pedido::create([
-                'user_id' => $idusuario,
-                'status' => 'RE',
-            ]);
-
-            $idpedido = $pedido_novo->id;
+            DB::beginTransaction();
+            try {
+                //code...
+                $pedido_novo = Pedido::create([
+                    'User_id' => Auth::user()->id,
+                    'produto_id' => $produto->id,
+                    'valor' => $produto->preco,
+                    'datapedido' => \Carbon\Carbon::now(),
+                    'status' => 'RE',
+                    'quantidade' => 1,
+                    'observacao' => 'qualquer coisa',
+                    
+                    'valorunitariop' => $produto->preco,
+                ]);
+    
+                $idpedido = $pedido_novo->id;
+                
+                Carrinho::create([
+                    'pedido_id' => $idpedido,
+                    'User_id' =>   Auth::user()->id,
+                    'produto_id' => $produto->id,
+                    'valor' => $produto->preco,
+                    'status' => 'RE'
+                ]);
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollback();
+                //throw $th;
+            }
         }
-
-        Carrinho::create([
-            'pedido_id' => $idpedido,
-            'produto_id' => $idproduto,
-            'valor' => $produto->preco,
-            'status' => 'RE'
-        ]);
+        
+ 
 
 
+        $req->session()->flash('mensagem-sucesso',   'Produto adicionado ao carrinho com sucesso! ');
 
-
-        $req->sesion()->flash('mensagem-sucesso',   'Produto adicionado ao carrinho com sucesso! ');
-
-        return redirect()->route('/carrinho');
+        return redirect()->route('carrinho.ver');
     }
 
 }
