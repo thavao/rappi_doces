@@ -21,6 +21,6 @@ class Fornecedor extends Model
     ];
     //definindo chave primaria do fornecedor (pro laraveol)
     public function produto(){
-        return $this->hasMany(Produto::class, 'fornecedor_id');
+        return $this->hasMany(Produto::class, 'fornecedor_id', 'id');
     }
 }

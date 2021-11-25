@@ -15,8 +15,8 @@ class Pedido extends Model
         'id',
         'user_id',
         'produto_id',
-        'carrinho_id',
         'datapedido',
+        'obervacao',
 
     ];
     protected $appends =[
@@ -30,15 +30,17 @@ class Pedido extends Model
         }
         return $total;
     }
-    public function produto(){
-        return $this->belongsTo(Produto::class, 'produto_id');
-    }
     public function cliente(){
-        return $this->belongsTo(User::class, 'User_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function itens(){
+        return $this->hasMany(ItensPedido::class);
     }
 
     public function carrinho(){
-        return $this->hasMany(Carrinho::class);
+        return $this->belongsTo(Carrinho::class, 'carrinho_id', 'id');
+
         // return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
     }
 

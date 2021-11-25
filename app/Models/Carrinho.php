@@ -16,14 +16,16 @@ class Carrinho extends Model
         'id',
         'produto_id',
         'user_id',
-        'status',
-        'valor',
         'quantidade',
+        'datacarrinho',
 
     ];
 
     public function produto(){
-        return $this->belongsTo(Produto::class, 'produto_id', 'id');
+        return $this->hasMany(Produto::class, 'produto_id', 'id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }
