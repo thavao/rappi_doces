@@ -19,17 +19,7 @@ class Pedido extends Model
         'obervacao',
 
     ];
-    protected $appends =[
-        'total',
-    ];
-    public function getTotalAttribute(){
-        $carrinhos = $this->carrinho;
-        $total = 0;
-        foreach($carrinhos as $car){
-            $total = $total + ($car->produto->preco * $this->quantidade);
-        }
-        return $total;
-    }
+    
     public function cliente(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -38,11 +28,13 @@ class Pedido extends Model
         return $this->hasMany(ItensPedido::class);
     }
 
-    public function carrinho(){
-        return $this->belongsTo(Carrinho::class, 'carrinho_id', 'id');
+    // public function carrinho(){
+    //     return $this->belongsTo(Carrinho::class, 'carrinho_id', 'id');
 
-        // return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
-    }
+    //     // return $this->hasMany(Carrinho::class)->select( DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))->groupBy('produto_id')->orderByRaw('produto_id', 'descricao');
+    // }
+
+   
 
     /* public static function consultaId($where){
    return !empty($pedido->id) ? $pedido->id : null;

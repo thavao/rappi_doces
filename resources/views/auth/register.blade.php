@@ -26,7 +26,7 @@
 
             <div>
                 <x-jet-label for="cpf" value="{{ __('CPF') }}" />
-                <x-jet-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autofocus autocomplete="cpf" maxlength="14" />
+                <x-jet-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')" required autofocus autocomplete="cpf" maxlength="14"/>
             </div>
 
             <div>
@@ -81,33 +81,35 @@ $(document).ready(function(){
 
     $('#cpf').mask('000.000.000-00', {reverse: true});
 
+    $('#cpf').blur(function(){
+        if(! isValidCPF($('#cpf').replace(/\D/g, ''))){
+            alert("cpf valido")
+        }else{
+            alert("cpf invalido")
+        }
+    })
+
   });
 
-  function validatecpf($number){
-  $cpf = preg_replace('/[^0-9]/', "", $number);
+  function isValidCPF(number) {
+    var sum;
+    var rest;
+    sum = 0;
+    if (number == "00000000000") return false;
 
-  if (strien($cpf) != 11 || preg_match('/([0-9])\1{10}/', $cpf)){
-      return false;
-  }
-$number_qunatity_to_loop = [9, 10];
+    for (i=1; i<=9; i++) sum = sum + parseInt(number.substring(i-1, i)) * (11 - i);
+    rest = (sum * 10) % 11;
 
-foreach($number_qunatity_to_loop as $item){
+    if ((rest == 10) || (rest == 11))  rest = 0;
+    if (rest != parseInt(number.substring(9, 10)) ) return false;
 
-    $sum = 0;
-    $number_to_multiplicate = $item + 1;
+    sum = 0;
+    for (i = 1; i <= 10; i++) sum = sum + parseInt(number.substring(i-1, i)) * (12 - i);
+    rest = (sum * 10) % 11;
 
-    for($index = 0; $index <$item; $index++){
-        $sum += $cpf[$index]*($numberto_multiplicate--);
-    }
-
-    $result = (($sum*10)% 11);
-
-    if($cpf[$item] != $result){
-        return false;
-    }
-    
+    if ((rest == 10) || (rest == 11))  rest = 0;
+    if (rest != parseInt(number.substring(10, 11) ) ) return false;
+    return true;
 }
-return true
-  }
 </script>
 

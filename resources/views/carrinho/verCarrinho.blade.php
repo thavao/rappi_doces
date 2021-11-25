@@ -4,12 +4,25 @@
 
 
 
-</br>
+
 <div class="container">
    <!-- component -->
 <div class="flex justify-center my-6">
   <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
     <div class="flex-1">
+      @if (Session::has('mensagem-sucesso'))
+<div class ="card-panel green center" >
+    <strong>{{Session::get('mensagem-sucesso')}}</strong>
+</div>
+
+@endif
+
+@if (Session::has('mensagem-falha'))
+<div class ="card-panel red place-items-center">
+    <strong>{{Session::get('mensagem-falha')}}</strong>
+</div>
+
+@endif
       <table class="w-full text-sm lg:text-base" cellspacing="0">
         <thead>
           <tr class="h-12 uppercase">
@@ -23,7 +36,10 @@
             <th class="text-right">Valor Total</th>
           </tr>
         </thead>
+
+        @forelse ($carrinho as $car)
         <tbody>
+         
           <tr>
             <td class="hidden pb-4 md:table-cell">
               <a href="#">
@@ -32,7 +48,7 @@
             </td>
             <td>
               <a href="#">
-                <p class="mb-2 md:ml-4">Earphone</p>
+                <p class="mb-2 md:ml-4">{{$car->produto->NomeProduto}}</p>
                 <form action="" method="POST">
                   <button type="submit" class="text-gray-700 md:ml-4">
                     <small>(Remove item)</small>
@@ -42,92 +58,31 @@
             </td>
             <td class="justify-center md:justify-end md:flex mt-6">
               <div class="w-20 h-10">
-                <div class="relative flex flex-row w-full h-8">
+                {{-- <div class="relative flex flex-row w-full h-8">
                 <input type="number" value="2" 
                   class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
-                </div>
+                </div> --}}
+                <p>{{$car->quantidade}}</p>
               </div>
             </td>
             <td class="hidden text-right md:table-cell">
               <span class="text-sm lg:text-base font-medium">
-                10.00€
+                <p>R$ {{ number_format($car->produto->preco, 2, ',', '.') }}</p>
               </span>
             </td>
             <td class="text-right">
               <span class="text-sm lg:text-base font-medium">
-                20.00€
+                <p>R$ {{ number_format($car->total(), 2, ',', '.') }}</p>
               </span>
             </td>
-          </tr> 
-          <tr>
-            <td class="hidden pb-4 md:table-cell">
-              <a href="#">
-                <img src="https://limg.app/i/Cute-Constrictor-Super-Sexy-Military-Enforcer-W7mvBp.png" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td>
-              <p class="mb-2 md:ml-4">Tesla Model 3</p>
-              <form action="" method="POST">
-                <button type="submit" class="text-gray-700 md:ml-4">
-                  <small>(Remove item)</small>
-                </button>
-              </form>
-            </td>
-            <td class="justify-center md:justify-end md:flex md:mt-4">
-            <div class="w-20 h-10">
-              <div class="relative flex flex-row w-full h-8">
-              <input type="number" value="3" 
-                class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
-              </div>
-            </div>
-            </td>
-            <td class="hidden text-right md:table-cell">
-              <span class="text-sm lg:text-base font-medium">
-                49,600.01€
-              </span>
-            </td>
-            <td class="text-right">
-              <span class="text-sm lg:text-base font-medium">
-                148,800.03€
-              </span>
-            </td>
-          </tr> 
-          <tr>
-            <td class="hidden pb-4 md:table-cell">
-              <a href="#">
-                <img src="https://limg.app/i/Successful-Spider-Biblical-Mutant---Total-War-lKoE7D.jpeg" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td>
-              <p class="mb-2 md:ml-4">Bic 4 colour pen</p>
-              <form action="" method="POST">
-                <button type="submit" class="text-gray-700 md:ml-4">
-                  <small>(Remove item)</small>
-                </button>
-              </form>
-            </td>
-            <td class="justify-center md:justify-end md:flex md:mt-8">
-            <div class="w-20 h-10">
-              <div class="relative flex flex-row w-full h-8">
-              <input type="number" value="5" 
-                class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
-              </div>
-            </div>
 
-            </td>
-            <td class="hidden text-right md:table-cell">
-              <span class="text-sm lg:text-base font-medium">
-                1.50€
-              </span>
-            </td>
-            <td class="text-right">
-              <span class="text-sm lg:text-base font-medium">
-                7.50€
-              </span>
-            </td>
-          </tr> 
-        </tbody>
-      </table>
+
+            @empty
+            <p>Carrinho Vazio :(</p>
+                
+            
+            @endforelse
+          
       <hr class="pb-6 mt-6">
           <div class="p-4 mt-6 bg-gray-100 rounded-full">
             <h1 class="ml-2 font-bold uppercase">Observações</h1>

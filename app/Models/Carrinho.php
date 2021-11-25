@@ -22,10 +22,22 @@ class Carrinho extends Model
     ];
 
     public function produto(){
-        return $this->hasMany(Produto::class, 'produto_id', 'id');
+        return $this->belongsTo(Produto::class, 'produto_id', 'id');
     }
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function total(){
+        return $this->produto->preco * $this->quantidade;
+    }
+   /*  protected $appends =[
+        'total',
+    ];
+    public function getTotalAttribute(){
+        
+            $total = $total + ($produto->preco * $this->quantidade);
+        return $total;
+    } */
 
 }

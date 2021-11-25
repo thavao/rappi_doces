@@ -42,6 +42,6 @@ class Produto extends Model
     }
 
     public function carrinho(){
-        return $this->belongsTo(Carrinh::class);
+        return $this->hasMany(Carrinh::class);
     }
 }
