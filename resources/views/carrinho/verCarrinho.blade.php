@@ -43,7 +43,7 @@
           <tr>
             <td class="hidden pb-4 md:table-cell">
               <a href="#">
-                <img src="https://limg.app/i/Calm-Cormorant-Catholic-Pinball-Blaster-yM4oub.jpeg" class="w-20 rounded" alt="Thumbnail">
+                <img src="/produtos/{{$car->produto->imagem}}" class="w-20 rounded" alt="Thumbnail">
               </a>
             </td>
             <td>
