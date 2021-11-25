@@ -16,11 +16,12 @@ class CreateCarrinhosTable extends Migration
         Schema::create('carrinhos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('produto_id')->constrained();
-            $table->foreignId('pedido_id')->constrained();
+            $table->foreignId('User_id')->constrained();
+            $table->integer('quantidade');
             $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO
             $table->decimal('valor', 8, 2)->default(0);
-            $table->decimal('desconto', 8, 2)->default(0);
-            $table->foreignId('cupom_desconto_id')->nullable()->constrained();
+
+
 
             $table->softDeletes();
             $table->timestamps();

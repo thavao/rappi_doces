@@ -13,13 +13,10 @@ class Pedido extends Model
     use SoftDeletes;
     protected $fillable = [
         'id',
-        'User_id',
+        'user_id',
         'produto_id',
         'carrinho_id',
         'datapedido',
-        'valorunitariop',
-        'quantidade',
-        'observacao',
 
     ];
     public function produto(){
