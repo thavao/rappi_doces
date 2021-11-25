@@ -73,6 +73,7 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
 <script>
 $(document).ready(function(){
 
@@ -81,5 +82,32 @@ $(document).ready(function(){
     $('#cpf').mask('000.000.000-00', {reverse: true});
 
   });
+
+  function validatecpf($number){
+  $cpf = preg_replace('/[^0-9]/', "", $number);
+
+  if (strien($cpf) != 11 || preg_match('/([0-9])\1{10}/', $cpf)){
+      return false;
+  }
+$number_qunatity_to_loop = [9, 10];
+
+foreach($number_qunatity_to_loop as $item){
+
+    $sum = 0;
+    $number_to_multiplicate = $item + 1;
+
+    for($index = 0; $index <$item; $index++){
+        $sum += $cpf[$index]*($numberto_multiplicate--);
+    }
+
+    $result = (($sum*10)% 11);
+
+    if($cpf[$item] != $result){
+        return false;
+    }
+    
+}
+return true
+  }
 </script>
 
