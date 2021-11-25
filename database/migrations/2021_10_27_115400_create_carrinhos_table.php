@@ -16,10 +16,9 @@ class CreateCarrinhosTable extends Migration
         Schema::create('carrinhos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('produto_id')->constrained();
-            $table->foreignId('User_id')->constrained();
-            $table->integer('quantidade');
-            $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO
-            $table->decimal('valor', 8, 2)->default(0);
+            $table->foreignId('user_id')->constrained();
+            $table->integer('quantidade')->default(1);            
+            $table->date('datacarrinho');
 
 
 

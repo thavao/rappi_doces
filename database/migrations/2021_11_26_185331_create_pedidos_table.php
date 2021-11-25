@@ -16,8 +16,8 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('produto_id')->constrained();
             $table->date('datapedido');
+            $table->string('observacao', 630);
             $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO
 
             $table->softDeletes();
@@ -34,4 +34,5 @@ class CreatePedidosTable extends Migration
     {
         Schema::dropIfExists('pedidos');
     }
+    
 }
