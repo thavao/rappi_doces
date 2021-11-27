@@ -20,11 +20,12 @@ class CarrinhoController extends Controller
         return view('carrinho.verCarrinho', ['carrinho' => $carrinho]);
     }
 
+
     public function adicionar(Request $request){
         $this->middleware('VerifyCsrfToken');
 
         // $req = Request();
-
+        if(Auth::user()->nivel == 99){
         try {
             //code...
             // $idproduto = Produto::findOrFail('id');
@@ -50,7 +51,10 @@ class CarrinhoController extends Controller
             return redirect('/carrinho');
         }
 
-        
+    }
+    else{
+        return redirect('/')->with('msg', 'Você não é autorizado a comprar produtos');
+    }
 
 
         // $idusuario = Auth::id();
