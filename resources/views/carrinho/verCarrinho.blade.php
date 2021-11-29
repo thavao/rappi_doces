@@ -89,7 +89,9 @@
           </div>
           <div class="p-4">
             <p class="mb-4 italic">Se você tem alguma observação para o vendedor, por favor deixe na caixa abaixo</p>
-            <textarea class="w-full h-24 p-2 bg-gray-100 rounded"></textarea>
+            <textarea class="w-full h-24 p-2 bg-gray-100 rounded"  >
+            </textarea>
+            <input class:="type="text"  id="observacao" name="observacao" placeholder="Observacao">"
           </div>
         </div>
         <div class="lg:px-2 lg:w-1/2">
@@ -99,28 +101,13 @@
           <div class="p-4">
             <p class="mb-6 italic"></p>
               <div class="flex justify-between border-b">
-                <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
-                  Subtotal
-                </div>
-                <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                  148,827.53€
-                </div>
               </div>
-                
                 <div class="flex justify-between pt-4 border-b">
                   <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
-                    Tax
+                    Total:
                   </div>
                   <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                    2,976.55€
-                  </div>
-                </div>
-                <div class="flex justify-between pt-4 border-b">
-                  <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
-                    Total
-                  </div>
-                  <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                    17,859.3€
+                  <p class="mb-2 md:ml-4">{{$car->produto->preco}}</p>
                   </div>
                 </div>
               <a href="#">
