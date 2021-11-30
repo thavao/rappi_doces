@@ -90,4 +90,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     }); */
 
     Route::post('carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
+
+    Route::delete('carrinho/retirar/{id}/produto', [CarrinhoController::class, 'remover']);
 });

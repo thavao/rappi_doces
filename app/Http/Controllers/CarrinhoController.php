@@ -88,4 +88,12 @@ class CarrinhoController extends Controller
         // return redirect()->route('/carrinho');
     }
 
+    public function remover($id){
+
+
+        Carrinho::findOrFail($id)->delete();
+
+        return redirect('/carrinho')->with('msg', 'produto removido');
+    }
+
 }

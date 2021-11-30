@@ -39,7 +39,7 @@
 
         @forelse ($carrinho as $car)
         <tbody>
-         
+
           <tr>
             <td class="hidden pb-4 md:table-cell">
               <a href="#">
@@ -49,7 +49,9 @@
             <td>
               <a href="#">
                 <p class="mb-2 md:ml-4">{{$car->produto->NomeProduto}}</p>
-                <form action="" method="POST">
+                <form action="/carrinho/retirar/{{$car->id}}/produto" method="POST">
+                    @csrf
+                    @method('delete')
                   <button type="submit" class="text-gray-700 md:ml-4">
                     <small>(Remove item)</small>
                   </button>
@@ -59,7 +61,7 @@
             <td class="justify-center md:justify-end md:flex mt-6">
               <div class="w-20 h-10">
                 {{-- <div class="relative flex flex-row w-full h-8">
-                <input type="number" value="2" 
+                <input type="number" value="2"
                   class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                 </div> --}}
                 <p>{{$car->quantidade}}</p>
@@ -79,10 +81,10 @@
 
             @empty
             <p>Carrinho Vazio :(</p>
-                
-            
+
+
             @endforelse
-          
+
       <hr class="pb-6 mt-6">
           <div class="p-4 mt-6 bg-gray-100 rounded-full">
             <h1 class="ml-2 font-bold uppercase">Observações</h1>
