@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\CarrinhoController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -79,7 +78,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 //ação restaurar fonecedor deletado
 
     Route::post('/fornecedores/restore/{id}', [FornecedorController::class, 'restoref']);
-
 ////////////////////////////////////////CARRINHO/////////////////////////////////////////
 
     Route::get('/carrinho', [CarrinhoController::class, 'ver']);

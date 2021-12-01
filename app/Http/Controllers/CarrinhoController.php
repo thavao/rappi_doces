@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\ItensPedido;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
+
 class CarrinhoController extends Controller
 {
     public function ver(){
@@ -90,7 +91,8 @@ class CarrinhoController extends Controller
     }
     public function retirar($id){
 
-        Carrinho::findOrFail($id)->where('user_id', '=', Auth::user()->id)->get()->forcedelete();
+        Carrinho::findOrFail($id)->delete();
+
 
         return redirect('/')->with('msg', 'Produto removido do carrinho!');
     }
@@ -110,24 +112,29 @@ class CarrinhoController extends Controller
         foreach($carrinho as $car){
             $itensPedido = New ItensPedido;
             $itensPedido->pedido_id = $npedido->id;
-            
+
             $itensPedido->produto_id = $car->produto->id;
             $itensPedido->preco = $car->produto->preco;
             $itensPedido->quantidade = $car->quantidade;
-            
+
             $itensPedido->save();
         }
 
         foreach($carrinho as $cartrash){
 
-            $cartrash->findOrFail($cartrash->id)->forcedelete();
+            $cartrash->findOrFail($cartrash->id)->delete();
+
+
+
+
+        return redirect('/')->with('msg', 'Produto removido do carrinho!');
 
         }
 
 
 
         return redirect('/')->with('msg', 'Seu pedido foi reservado e esta sendo tratado');
-        
+
 
    }
 }
