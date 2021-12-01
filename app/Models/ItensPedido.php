@@ -6,21 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Fornecedor extends Model
+
+class ItensPedido extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
+
     protected $fillable = [
-        'nome',
-        'cnpj',
+        'pedido_id',
+        'produto_id',
+        'quantidade',
+        'preco',
+
     ];
-    //definindo chave primaria do fornecedor (pro laraveol)
+
+    public function pedido(){
+        return $this->belongsTo(Pedido::class, 'pedido_id', 'id');
+    }
     public function produto(){
-        return $this->hasMany(Produto::class, 'fornecedor_id', 'id');
+        return $this->hasMany(Produto::class, 'produto_id', 'id');
     }
 }

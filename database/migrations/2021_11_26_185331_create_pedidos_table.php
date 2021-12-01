@@ -15,12 +15,11 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('User_id')->constrained();
-            $table->foreignId('produto_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->date('datapedido');
-            $table->float('valorunitariop', 10, 2)->unsigned();
-            $table->integer('quantidade')->unsigned();
-            $table->string('observação',640);
+            $table->string('observacao', 630);
+            $table->enum('status', ['RE', 'PA', 'CA', 'EN'])->default('RE');//RESERVADO, PAGO, CANCELADO, ENTREGUE
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -35,4 +34,5 @@ class CreatePedidosTable extends Migration
     {
         Schema::dropIfExists('pedidos');
     }
+    
 }
