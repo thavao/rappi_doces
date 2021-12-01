@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Carrinho extends Model
 {
@@ -28,8 +29,17 @@ class Carrinho extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function total(){
+    public function totalItem(){
         return $this->produto->preco * $this->quantidade;
+    }
+
+    public static function totalGeral(){
+        $itens = Carrinho::where('user_id', '=', Auth::user()->id)->get();
+        $total = 0;
+        foreach($itens as $item){
+            $total += $item->produto->preco * $item->quantidade;
+        }
+        return $total;
     }
    /*  protected $appends =[
         'total',

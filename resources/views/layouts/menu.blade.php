@@ -40,6 +40,7 @@
 
                                 @if (Auth::user()->nivel < 10)
                                     <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/produtos') }}">Cadastrar Produto</a></li>
+                                    <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/fornecedor') }}">Cadastrar Fornecedor</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ url('/p/painel') }}">Painel de controle</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ url('/dashboard') }}">Dashboard</a></li>
                                     @endif

@@ -8,6 +8,7 @@ use App\Models\Carrinho;
 use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\User;
+use App\Models\ItensPedido;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 class CarrinhoController extends Controller
@@ -87,7 +88,9 @@ class CarrinhoController extends Controller
 
         // return redirect()->route('/carrinho');
     }
+    public function retirar($id){
 
+<<<<<<< HEAD
     public function remover($id){
 
 
@@ -96,4 +99,46 @@ class CarrinhoController extends Controller
         return redirect('/carrinho')->with('msg', 'produto removido');
     }
 
+=======
+        Carrinho::findOrFail($id)->where('user_id', '=', Auth::user()->id)->get()->forcedelete();
+
+        return redirect('/')->with('msg', 'Produto removido do carrinho!');
+    }
+
+    public function pedido(Request $request){
+
+        $carrinho = Carrinho::where('user_id', '=', Auth::user()->id)->get();
+       // dd($carrinho);
+        $npedido = New Pedido;
+
+        $npedido->user_id = Auth::user()->id;
+        $npedido->datapedido = \Carbon\Carbon::now();
+        $npedido->observacao = $request->observacao;
+
+        $npedido->save();
+
+        foreach($carrinho as $car){
+            $itensPedido = New ItensPedido;
+            $itensPedido->pedido_id = $npedido->id;
+            
+            $itensPedido->produto_id = $car->produto->id;
+            $itensPedido->preco = $car->produto->preco;
+            $itensPedido->quantidade = $car->quantidade;
+            
+            $itensPedido->save();
+        }
+
+        foreach($carrinho as $cartrash){
+
+            $cartrash->findOrFail($cartrash->id)->forcedelete();
+
+        }
+
+
+
+        return redirect('/')->with('msg', 'Seu pedido foi reservado e esta sendo tratado');
+        
+
+   }
+>>>>>>> b0bbc6fb1bbfca60a1e7879532019f4863c76021
 }

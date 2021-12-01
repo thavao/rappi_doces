@@ -14,8 +14,8 @@ if (Auth::user()->nivel > 10){
 
 @if (Auth::user()->nivel < 10)
 <div>
-<div class="flex justify-center my-6">
-  <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+<div class="flex justify-center items-center w-full bg-grey-200">
+  <div class="w-1/2 bg-white border-r-2 border-t-2 border-b-2 border-l-2 border-grey rounded shadow-lg p-8 m-4">
     <div class="flex-1">
                 <h1 class="block w-full text-center text-balck text-2xl font-bold mb-6">Cadastro de Produtos</h1>
   <form action="/cadastrar" method="POST" enctype="multipart/form-data">
@@ -49,7 +49,7 @@ if (Auth::user()->nivel > 10){
                 <label class="mb-2 font-bold text-lg text-white font-light  " for="image">Imagem do Produto</label>
                 <input type="file" id="imagem" name="imagem">
       </div>
-                <input class="block border-2 border-black bg-green-600 hover:bg-green-700 text-white font-bold uppercase text-lg mx-auto p-4 rounded" type="submit"  value="Finalizar Cadastro">
+                <input class="block border-2 bg-green-600 hover:bg-green-800 text-white font-bold uppercase text-lg mx-auto p-4 rounded" type="submit"  value="Finalizar Cadastro">
   </form>
 </div>
 <script>

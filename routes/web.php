@@ -85,11 +85,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/carrinho', [CarrinhoController::class, 'ver']);
 
     //adicionar produto ao carrinho
-    /* Route::get('carrinho/adicionar', function() {
-        return redirect()->route('mostrar.produto');
-    }); */
-
     Route::post('carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
+<<<<<<< HEAD
 
     Route::delete('carrinho/retirar/{id}/produto', [CarrinhoController::class, 'remover']);
+=======
+    //tirar produto do carrinho
+    Route::delete('carrinho/retirar/{id}', [CarrinhoController::class, 'retirar']);
+
+    Route::post('carrinho/pedido', [CarrinhoController::class, 'pedido']);
+>>>>>>> b0bbc6fb1bbfca60a1e7879532019f4863c76021
 });

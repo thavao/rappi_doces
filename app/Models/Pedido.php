@@ -17,6 +17,7 @@ class Pedido extends Model
         'produto_id',
         'datapedido',
         'obervacao',
+        'status',
 
     ];
     
@@ -27,6 +28,8 @@ class Pedido extends Model
     public function itens(){
         return $this->hasMany(ItensPedido::class);
     }
+
+    
 
     // public function carrinho(){
     //     return $this->belongsTo(Carrinho::class, 'carrinho_id', 'id');
