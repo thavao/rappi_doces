@@ -18,7 +18,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('datapedido');
             $table->string('observacao', 630);
-            $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO
+            $table->enum('status', ['RE', 'PA', 'CA', 'EN'])->default('RE');//RESERVADO, PAGO, CANCELADO, ENTREGUE
 
             $table->softDeletes();
             $table->timestamps();

@@ -15,8 +15,8 @@ class CreateItensPedidosTable extends Migration
     {
         Schema::create('itens_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pedidos_Id');
-            $table->foreignId('produto_Id');
+            $table->foreignId('pedido_id');
+            $table->foreignId('produto_id');
             $table->decimal('preco', 10, 2)->unsigned();
             $table->integer('quantidade')->unsigned();
             $table->enum('status', ['RE', 'PA', 'CA']);//RESERVADO, PAGO, CANCELADO

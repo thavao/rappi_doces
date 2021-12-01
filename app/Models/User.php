@@ -42,6 +42,7 @@ class User extends Authenticatable
     public function carrinhos(){
         return $this->belongsTo(Carrinho::class, 'carrinho_id', 'id');
     }
+    
 
     /**
      * The attributes that should be hidden for serialization.

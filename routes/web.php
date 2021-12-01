@@ -85,9 +85,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/carrinho', [CarrinhoController::class, 'ver']);
 
     //adicionar produto ao carrinho
-    /* Route::get('carrinho/adicionar', function() {
-        return redirect()->route('mostrar.produto');
-    }); */
-
     Route::post('carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
+    //tirar produto do carrinho
+    Route::delete('carrinho/retirar/{id}', [CarrinhoController::class, 'retirar']);
+
+    Route::post('carrinho/pedido', [CarrinhoController::class, 'pedido']);
 });
