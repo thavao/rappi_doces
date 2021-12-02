@@ -4,6 +4,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\PedidoController;
 use App\Models\Fornecedor;
 use App\Models\Produto;
 
@@ -84,10 +85,22 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 
     //adicionar produto ao carrinho
     Route::post('carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
-    
+
     //tirar produto do carrinho
     Route::delete('carrinho/retirar/{id}', [CarrinhoController::class, 'retirar']);
 
-    //criar pedido
+////////////////////////////////////////PEDIDO////////////////////////////////////////////
+
+//criar pedido
     Route::post('carrinho/pedido', [CarrinhoController::class, 'pedido']);
+
+//ver pedidos feitos
+    Route::get('usuario/pedidos',[PedidoController::class,'verPedidos']);
+
+//cancelar pedido
+    Route::put('usuario/pedidos/cacenlar/{id}', [PedidoController::class, 'cancelar']);
+
+//ver pedido
+    Route::get('usuario/ver/pedido/{id}', [PedidoController::class, 'mostrarPedido']);
+
 });

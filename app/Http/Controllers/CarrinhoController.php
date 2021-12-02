@@ -100,9 +100,9 @@ class CarrinhoController extends Controller
 
 
         }
-       
-
 
         return redirect('/')->with('msg', 'Seu pedido foi reservado e esta sendo tratado');
     }
+
+    
 }
