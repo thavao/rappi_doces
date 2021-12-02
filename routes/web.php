@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('usuario/pedidos',[PedidoController::class,'verPedidos']);
 
 //cancelar pedido
-    Route::put('usuario/pedidos/cacenlar/{id}', [PedidoController::class, 'cancelar']);
+    Route::put('usuario/pedidos/cancelar/{id}', [PedidoController::class, 'cancelar']);
 
 //ver pedido
     Route::get('usuario/ver/pedido/{id}', [PedidoController::class, 'mostrarPedido']);

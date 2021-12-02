@@ -21,10 +21,13 @@ class PedidoController extends Controller
 
     public function cancelar(Request $request){
 
-        Pedido::findOrFail($request->id);
-        $pedido = Pedido::where('user_id', '=', Auth::user()->id)->get();
+        
+        // $pedido = Pedido::findOrFail($request->id);
 
+        $pedido = Pedido::where('id', '=', $request->id)->where('user_id', '=', Auth::user()->id)->first();
+        
         $pedido->status = 'CA';
+        $pedido->save();
 
         return redirect('/')->with('msg', 'Pedido cancelado');
     }

@@ -26,11 +26,16 @@ class Pedido extends Model
     }
 
     public function itens(){
-        return $this->hasMany(ItensPedido::class);
+        return $this->hasMany(ItensPedido::class, 'pedido_id');
     }
 
     public function precoTotal(){
-        $this->itens->preco;
+        $total = 0;
+        $itens = $this->itens;
+        foreach($itens as $item){
+            $total += $item->preco * $item->quantidade;
+        }
+        return $total;
     }
 
 

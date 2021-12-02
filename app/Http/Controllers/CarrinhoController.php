@@ -86,6 +86,10 @@ class CarrinhoController extends Controller
             $itensPedido = new ItensPedido;
             $itensPedido->pedido_id = $npedido->id;
 
+            //diminui a quantidae de estoque do produto manipulado
+            $car->produto->qtdestoque = $car->produto->qtdestoque - $car->quantidade;
+            $car->produto->save();
+
             $itensPedido->produto_id = $car->produto->id;
             $itensPedido->preco = $car->produto->preco;
             $itensPedido->quantidade = $car->quantidade;
