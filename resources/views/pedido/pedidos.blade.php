@@ -27,18 +27,21 @@
             <a href="usuario/ver/pedido/{{$ped->id}}"> <span class="text-center ml-2 font-semibold">{{$ped->id}}</span></a>
           </td>
 
-          <td class="px-32 py-8">
-            <a href="usuario/ver/pedido/{{$ped->id}}"> <span>{{$ped->datapedido}}</span></a>
-          </td>
-
           <td class="px-16 py-2">
             <a href="/usuario/pedidos/cancelar{{$ped->id}}"> <span>R$ {{number_format($ped->precoTotal(), 2,",",".") }}</span></a>
           </td>
 
 
+          <td class="px-32 py-8">
+            <a href="usuario/ver/pedido/{{$ped->id}}"> <span>{{$ped->datapedido}}</span></a>
+          </td>
 
-        {  <td class="px-16 py-2">
-            @if ($ped->status='RE')
+          
+
+
+          @if ($ped->status == 'RE')
+          <td class="px-16 py-2">
+            
 
 
               <form action="/usuario/pedidos/cancelar/{{$ped->id}}" method="post">
