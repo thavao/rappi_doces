@@ -30,7 +30,7 @@ class ProdutoController extends Controller
         return view('produtos.cadastrar');
     }
     public function store(Request $request){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
         $produto = new Produto;
 
         $produto->NomeProduto = $request->NomeProduto;
@@ -78,7 +78,7 @@ class ProdutoController extends Controller
     }
 
     public function painel(){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
 
         $produto = Produto::all();
 
@@ -90,7 +90,7 @@ class ProdutoController extends Controller
     }
         //deletar
     public function destroy($id){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
             Produto::findOrFail($id)->delete();
             
             
@@ -104,7 +104,7 @@ class ProdutoController extends Controller
 
     //mostrar os deletados
     public function deletados(){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
          
         $produtos = Produto::onlyTrashed()->get();
 
@@ -118,7 +118,7 @@ class ProdutoController extends Controller
     }
         //restaurar
     public function restore($deleted_at){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
             $p = Produto::withTrashed()->findOrFail($deleted_at);
             $p->restore();
             
@@ -131,7 +131,7 @@ class ProdutoController extends Controller
     }
         //mostrar tela de editar
     public function editar($id){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
             $produto = Produto::findOrFail($id);
             
             return view('produtos.editar', ['produto' => $produto]);
@@ -143,7 +143,7 @@ class ProdutoController extends Controller
     }
         //editar
     public function update(Request $request){
-        if (Auth::user()->nivel == 99) {
+        if (Auth::user()->nivel == 1) {
             
             
             Produto::findOrFail($request->id)->update($request->all());

@@ -53,7 +53,7 @@
         <tr class="bg-white border-b-2 border-gray-900">
           <td class="px-16 py-2 flex flex-row items-center">
             <a href="/produtos/{{$produto->id}}"><img
-              class="h-8 w-8 rounded-full object-cover "
+              class="h-24 w-24  object-cover "
               src="\produtos\{{$produto->imagem}}"
               alt="Imagem de {{$produto->NomeProduto}}"
 
