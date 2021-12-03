@@ -11,7 +11,21 @@ if (Auth::user()->nivel > 10){
 @section('title', 'Rappi Doces')
 @section('content')
 
-
+@if (session('msg'))
+<div class="container">
+    <!-- component -->
+    <div class="flex justify-center my-6 text-center">
+        <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+            <div class="flex-1">
+                
+                    <div class="card-panel green center">
+                        <strong>{{session('msg') }}</strong>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @if (Auth::user()->nivel < 10)
 <div>
 <div class="flex justify-center items-center w-full bg-grey-200">

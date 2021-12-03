@@ -1,7 +1,21 @@
 @extends('layouts.menu')
 @section('title', 'Rappi Doces')
 @section('content')
-
+@if (session('msg'))
+<div class="container">
+    <!-- component -->
+    <div class="flex justify-center my-6 text-center">
+        <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+            <div class="flex-1">
+                
+                    <div class="card-panel green center">
+                        <strong>{{session('msg') }}</strong>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <div class="mt-2">
     <div><h1 style="text-align: center"> <a href="/fornecedores/deletados">Ver Fornecedores deletados </a></h1></div>
     <table class="max-w-5xl mx-auto table-auto">
@@ -76,8 +90,8 @@
       </tbody>
 
       @empty
-      <h1>nada foi encontrado</h1>
-
+      
+ <h1>nada</h1>
       @endforelse
     </table>
   </div>

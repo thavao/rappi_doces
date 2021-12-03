@@ -35,14 +35,16 @@
 
                             @if (Route::has('login'))
                                 @auth
-                            
-                                <li><a class="hover:text-gray-200" href="usuario/pedidos">Ver pedidos</a></li>
+                                
+                                @if (Auth::user()->nivel == 99)
+                                <li><a class="hover:text-gray-200" href="/usuario/pedidos">Ver pedidos</a></li>
+                                @endif
 
                                 @if (Auth::user()->nivel < 10)
                                     <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/produtos') }}">Cadastrar Produto</a></li>
                                     <li><a class="hover:text-gray-200" href="{{ url('/cadastrar/fornecedor') }}">Cadastrar Fornecedor</a></li>
-                                    <li><a class="hover:text-gray-200" href="{{ url('/p/painel') }}">Painel de controle</a></li>
-                                    <li><a class="hover:text-gray-200" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                    <li><a class="hover:text-gray-200" href="{{ url('/p/painel') }}">Painel de produtos</a></li>
+                                    <li><a class="hover:text-gray-200" href="{{ url('/painel/fornecedores') }}">Painel de fornecedores</a></li>
                                     @endif
                                 @else
                                     <li><a class="hover:text-gray-200" href="{{ route('login') }}">Log in</a></li>

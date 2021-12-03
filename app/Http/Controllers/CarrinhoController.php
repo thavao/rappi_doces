@@ -55,8 +55,12 @@ class CarrinhoController extends Controller
                 return redirect('/carrinho');
             }
         } else {
-            return redirect('/')->with('msg', 'Você não é autorizado a comprar produtos');
+            return redirect('/asyudhgashd')->with('msg', 'Você não é autorizado a acessar essapagina');
         }
+
+        
+        
+        
     }
         //remover produto do carrinho
     public function retirar($id)
@@ -71,6 +75,7 @@ class CarrinhoController extends Controller
         //fazer pedido
     public function pedido(Request $request)
     {
+        if (Auth::user()->nivel == 99) {
 
         $carrinho = Carrinho::where('user_id', '=', Auth::user()->id)->get();
         // dd($carrinho);
@@ -107,6 +112,10 @@ class CarrinhoController extends Controller
 
         return redirect('/')->with('msg', 'Seu pedido foi reservado e esta sendo tratado');
     }
+    else {
+        return redirect('/')->with('msg', 'Você não é autorizado a comprar produtos');
+    }
+}
 
     
 }

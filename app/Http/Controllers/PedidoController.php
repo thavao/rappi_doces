@@ -32,12 +32,13 @@ class PedidoController extends Controller
         return redirect('/')->with('msg', 'Pedido cancelado');
     }
 
-    public function mostrarPedido(){
+    /* public function mostrarPedido(){
 
         $pedido = Pedido::where('user_id', '=', Auth::user()->id)->get();
 //dd($pedido);
         $itens = ItensPedido::where('pedido_id', '=', $pedido->id);
 
         return view('pedido.itenspedido', ['itens' => $itens]);
-    }
+    } */
+
 }

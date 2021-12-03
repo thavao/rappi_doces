@@ -3,7 +3,21 @@
 @section('content')
 
 
-
+@if (session('msg'))
+<div class="container">
+    <!-- component -->
+    <div class="flex justify-center my-6 text-center">
+        <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+            <div class="flex-1">
+                
+                    <div class="card-panel green center">
+                        <strong>{{session('msg') }}</strong>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 
     <div class="container">
         <!-- component -->
@@ -88,7 +102,8 @@
 
 
                             @empty
-                                <p>Carrinho Vazio :(</p>
+                            <h1 class="block w-full text-center text-black text-2xl font-bold mb-6">Carrinho vazio :(</h1>
+                            <a href="/"><h2 class="text-center">Veja nossos produtos</h2></a>
 
                                 @endforelse
                         </tbody>
